@@ -1,0 +1,1747 @@
+
+================================================================================
+STEP 0
+================================================================================
+# STEP 0 — Project Understanding
+
+Abhi hum coding start nahi karenge directly.  
+Sabse pehle hum project ko properly samjhenge like real software companies karti hain.
+
+Ye step viva + implementation dono ke liye important hai.
+
+---
+
+# 📌 PROJECT OVERVIEW
+
+Tum jo build kar rahi ho wo ek:
+
+# CRM + Project Management + AI SaaS Platform
+
+hoga.
+
+Iska purpose:
+
+- Company apne leads manage kare
+- Deals track kare
+- Employees tasks manage kare
+- Attendance track kare
+- Projects handle kare
+- Real-time updates mile
+- Analytics \u0026 AI suggestions mile
+
+---
+
+# 📌 MAIN MODULES
+
+Tumhare project mein ye core modules honge:
+
+| Module | Purpose |
+|---|---|
+| Authentication | Login/Register + Roles |
+| CRM | Leads, Deals, Contacts |
+| Projects | Tasks, Boards, Timeline |
+| Attendance | Employee tracking |
+| Communication | Notifications + Realtime |
+| Analytics | Dashboard + Reports |
+| AI Assistant | Suggestions \u0026 automation |
+
+---
+
+# 📌 USER ROLES
+
+## 1. Admin
+
+Admin sab control karega:
+
+- Users manage
+- Deals manage
+- Reports dekhna
+- Assign tasks
+- Analytics access
+
+---
+
+## 2. Manager
+
+Manager:
+
+- Team handle karega
+- Leads manage karega
+- Projects monitor karega
+
+---
+
+## 3. Employee/User
+
+Employee:
+
+- Assigned tasks dekhega
+- Attendance mark karega
+- Timeline update karega
+
+---
+
+# 📌 CRM WORKFLOW UNDERSTANDING
+
+Ab CRM ka actual business flow samjho.
+
+# Flow:
+
+Lead → Contact → Deal → Project
+
+---
+
+#
+
+
+================================================================================
+STEP 1
+================================================================================
+# STEP 1 — Final Tech Stack + Folder Structure + Project Architecture
+
+Ab hum project ka actual foundation design karenge.
+
+Ye step bahut important hai because:
+
+\u003e Agar architecture sahi ho → project scalable + clean + easy to debug hota hai.
+
+---
+
+# 📌 PROJECT TYPE
+
+Hum build karenge:
+
+# Full Stack MERN SaaS CRM
+
+Using:
+
+| Layer | Technology |
+|---|---|
+| Frontend | Next.js |
+| Styling | Tailwind CSS |
+| Backend | Node.js + Express |
+| Database | MongoDB |
+| Authentication | JWT |
+| Realtime | Socket.io |
+
+---
+
+# 📌 WHY WE CHOSE THIS STACK
+
+## 1. Next.js
+
+Use for:
+
+- Fast frontend
+- Routing
+- Dashboard UI
+- Scalable structure
+
+---
+
+## 2. Tailwind CSS
+
+Use for:
+
+- Fast styling
+- Responsive UI
+- Clean dashboard design
+
+---
+
+## 3. Express.js
+
+Use for:
+
+- APIs
+- Backend logic
+- Authentication
+- CRM business logic
+
+---
+
+## 4. MongoDB
+
+Use for:
+
+- Flexible CRM data
+- Easy relationships
+- Fast development
+
+---
+
+## 5. JWT
+
+Use for:
+
+- Secure login
+- Role-based access
+
+---
+
+# 📌 FINAL PROJECT STRUCTURE
+
+Hum 2 major folders banayenge:
+
+```text id=\"k8yd1m\"
+crm-saas/
+│
+├── client/     → Frontend (Next.js)
+│
+├── server/     → Backend (Express)
+│
+└── README.md
+```
+
+---
+
+# 📌 FRONTEND ARCHITECTURE
+
+Inside `client/`
+
+```text id=\"2r9mke\"
+client/
+│
+├── app/
+│   ├── login/
+│   ├── dashboard/
+│   ├── crm/
+│   ├── projects/
+│   └── analytics/
+│
+├── components/
+│   ├── ui/
+│   ├── dashboard/
+│   ├── crm/
+│   └── projects/
+│
+├── lib/
+│
+├── services/
+│
+├── hooks/
+│
+├── store/
+│
+└── styles/
+```
+
+---
+
+# 📌 UNDERSTANDING EACH FOLDER
+
+## app/
+
+Contains pages/routes.
+
+Example:
+
+```text id=\"fq2czg\"
+/dashboard
+/crm
+/projects
+```
+
+---
+
+## components/
+
+Reusable UI components.
+
+Example:
+
+- Sidebar
+- Navbar
+- Cards
+- Tables
+- Kanban Board
+
+---
+
+## services/
+
+API calling functions.
+
+Example:
+
+```js
+loginUser()
+createLead()
+getDeals()
+```
+
+---
+
+## hooks/
+
+Custom React hooks.
+
+Example:
+
+```js
+useAuth()
+useSocket()
+```
+
+---
+
+## store/
+
+Global state management later.
+
+---
+
+# 📌 BACKEND ARCHITECTURE
+
+Inside `server/`
+
+```text id=\"gr5wce\"
+server/
+│
+├── src/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── services/
+│   ├── sockets/
+│   ├── utils/
+│   └── app.js
+│
+├── .env
+│
+└── server.js
+```
+
+---
+
+# 📌 UNDERSTANDING BACKEND FOLDERS
+
+## config/
+
+Database configuration.
+
+---
+
+## controllers/
+
+Business logic.
+
+Example:
+
+```js
+createLead()
+loginUser()
+```
+
+---
+
+## models/
+
+MongoDB schemas.
+
+Example:
+
+- User
+- Lead
+- Deal
+- Task
+
+---
+
+## middleware/
+
+JWT authentication.
+
+Role checking.
+
+---
+
+## routes/
+
+API routes.
+
+Example:
+
+```text id=\"d5z8pq\"
+/api/auth
+/api/leads
+/api/deals
+```
+
+---
+
+# 📌 API FLOW UNDERSTANDING
+
+Frontend → API Request → Backend → Database
+
+Example:
+
+```text id=\"4e1e0w\"
+User clicks Create Lead
+        ↓
+Frontend API Call
+        ↓
+Express Route
+        ↓
+Controller
+        ↓
+MongoDB Save
+        ↓
+Response back
+```
+
+---
+
+# 📌 MODULE SEPARATION
+
+Very important.
+
+Hum project ko modules mein divide karenge.
+
+| Module | R
+
+
+================================================================================
+STEP 2
+================================================================================
+# STEP 2 — Environment Setup + Create Frontend \u0026 Backend Projects
+
+Ab hum actual coding start karenge 🔥
+
+Is step mein:
+- Frontend setup
+- Backend setup
+- Tailwind setup
+- MongoDB setup
+- Folder structure
+- First successful run
+
+sab karenge.
+
+---
+
+# 📌 BEFORE STARTING
+
+Make sure installed hai:
+
+| Software | Required |
+|---|---|
+| Node.js | v18+ |
+| VS Code | Latest |
+| MongoDB Compass | Yes |
+| Git | Yes |
+
+---
+
+# 📌 CHECK NODE VERSION
+
+Terminal open karo:
+
+```bash
+node -v
+```
+
+Expected:
+
+```bash
+v18+
+```
+
+---
+
+# 📌 CREATE MAIN PROJECT FOLDER
+
+Desktop ya preferred location mein:
+
+```bash
+mkdir crm-saas
+cd crm-saas
+```
+
+---
+
+# 📌 CREATE FRONTEND PROJECT
+
+Hum use karenge:
+
+# entity[\"software\",\"Next.js\",\"React framework\"]
+
+Command:
+
+```bash
+npx create-next-app@latest client
+```
+
+---
+
+# 📌 SELECT THESE OPTIONS
+
+When prompts appear:
+
+| Option | Select |
+|---|---|
+| TypeScript | Yes |
+| ESLint | Yes |
+| Tailwind CSS | Yes |
+| src folder | Yes |
+| App Router | Yes |
+| Turbopack | Yes |
+| Import alias | Yes |
+
+---
+
+# 📌 MOVE INSIDE CLIENT
+
+```bash
+cd client
+```
+
+---
+
+# 📌 RUN FRONTEND
+
+```bash
+npm run dev
+```
+
+Open:
+
+```text
+http://localhost:3000
+```
+
+If working:
+
+✅ Frontend setup complete
+
+---
+
+# 📌 STOP SERVER
+
+Press:
+
+```bash
+CTRL + C
+```
+
+---
+
+# 📌 INSTALL SHADCN UI
+
+Hum professional dashboard UI banayenge using:
+
+# entity[\"software\",\"shadcn/ui\",\"React UI component library\"]
+
+Run:
+
+```bash
+npx shadcn@latest init
+```
+
+---
+
+# 📌 SELECT THESE OPTIONS
+
+| Option | Value |
+|---|---|
+| Style | Default |
+| Base Color | Slate |
+| CSS Variables | Yes |
+
+---
+
+# 📌 INSTALL IMPORTANT COMPONENTS
+
+```bash
+npx shadcn@latest add button card input dialog dropdown-menu table form
+```
+
+---
+
+# 📌 INSTALL EXTRA FRONTEND LIBRARIES
+
+```bash
+npm install axios react-hook-form zod lucide-react sonner
+```
+
+---
+
+# 📌 WHAT THESE ARE
+
+| Package | Use |
+|---|---|
+| axios | API calls |
+| react-hook-form | Forms |
+| zod | Validation |
+| lucide-react | Icons |
+| sonner | Toast notifications |
+
+---
+
+# 📌 GO BACK TO ROOT FOLDER
+
+```bash
+cd ..
+```
+
+---
+
+# 📌 CREATE BACKEND
+
+Create folder:
+
+```bash
+mkdir server
+cd server
+```
+
+---
+
+# 📌 INITIALIZE NODE PROJECT
+
+```bash
+npm init -y
+```
+
+---
+
+# 📌 INSTALL BACKEND DEPENDENCIES
+
+```bash
+npm install express mongoose cors dotenv bcryptjs jsonwebtoken cookie-parser socket.io
+```
+
+---
+
+# 📌 INSTALL DEV DEPENDENCIES
+
+```bash
+npm install -D nodemon
+```
+
+---
+
+# 📌 WHAT THESE PACKAGES DO
+
+| Package | Purpose |
+|---|---|
+| express | Backend server |
+| mongoose | MongoDB |
+| cors | Frontend/backend connection |
+| dotenv | Environment variables |
+| bcryptjs | Password hashing |
+| jsonwebtoken | JWT auth |
+| cookie-parser | Cookies |
+| socket.io | Real-time system |
+| nodemon | Auto restart |
+
+---
+
+# 📌 CREATE BACKEND FOLDERS
+
+Inside `server`
+
+Create:
+
+```text
+server/
+│
+├── src/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── services/
+│   ├── sockets/
+│   └── utils/
+```
+
+---
+
+# 📌 CREATE IMPORTANT FILES
+
+
+
+
+================================================================================
+STEP 3
+================================================================================
+# STEP 3 — Clean Folder Structure + Dashboard Layout + Authentication UI
+
+Ab hum professional frontend structure banayenge.
+
+Is step ke baad:
+
+✅ Proper dashboard layout ready  
+✅ Sidebar/Navbar ready  
+✅ Login page ready  
+✅ Protected route structure ready  
+✅ Reusable UI structure ready
+
+---
+
+# 📌 CONCEPTS USED
+
+| Concept | Used In |
+|---|---|
+| Component Architecture | Reusable UI |
+| Layout System | Dashboard |
+| Routing | Next.js App Router |
+| Authentication UI | Login page |
+| Responsive Design | Tailwind |
+| Protected Routes | Auth flow |
+
+---
+
+# 📌 STEP 3.1 — CLEAN DEFAULT FILES
+
+Inside `client/src/app`
+
+Delete:
+
+```text id=\"6twqbd\"
+favicon.ico
+page.tsx
+globals.css (optional reset later)
+```
+
+---
+
+# 📌 CREATE NEW APP STRUCTURE
+
+Inside `client/src/app`
+
+Create:
+
+```text id=\"9ydm3e\"
+app/
+│
+├── (auth)/
+│   └── login/
+│       └── page.tsx
+│
+├── (dashboard)/
+│   ├── dashboard/
+│   │   └── page.tsx
+│   │
+│   ├── crm/
+│   │   └── page.tsx
+│   │
+│   ├── projects/
+│   │   └── page.tsx
+│   │
+│   ├── analytics/
+│   │   └── page.tsx
+│   │
+│   └── layout.tsx
+│
+├── layout.tsx
+└── globals.css
+```
+
+---
+
+# 📌 WHY `(dashboard)` \u0026 `(auth)`?
+
+Ye:
+
+# Route Groups
+
+hote hain in:
+
+# entity[\"software\",\"Next.js\",\"React framework\"]
+
+Benefits:
+
+- Cleaner architecture
+- Shared layouts
+- Better scaling
+
+---
+
+# 📌 STEP 3.2 — SETUP GLOBAL CSS
+
+# src/app/globals.css
+
+```css id=\"xjrc4d\"
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: #0f172a;
+  color: white;
+}
+```
+
+---
+
+# 📌 STEP 3.3 — ROOT LAYOUT
+
+# src/app/layout.tsx
+
+```tsx id=\"6vvj5v\"
+import \"./globals.css\";
+
+export const metadata = {
+  title: \"CRM SaaS\",
+  description: \"CRM Project\",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    \u003chtml lang=\"en\"\u003e
+      \u003cbody\u003e{children}\u003c/body\u003e
+    \u003c/html\u003e
+  );
+}
+```
+
+---
+
+# 📌 STEP 3.4 — CREATE COMPONENT FOLDERS
+
+Inside `src/components`
+
+```text id=\"3tq6t8\"
+components/
+│
+├── dashboard/
+│   ├── sidebar.tsx
+│   ├── navbar.tsx
+│   └── dashboard-layout.tsx
+│
+├── auth/
+│   └── login-form.tsx
+│
+└── ui/
+```
+
+---
+
+# 📌 STEP 3.5 — CREATE SIDEBAR
+
+# src/components/dashboard/sidebar.tsx
+
+```tsx id=\"t1m4f6\"
+\"use client\";
+
+import Link from \"next/link\";
+import {
+  LayoutDashboard,
+  Briefcase,
+  FolderKanban,
+  BarChart3,
+} from \"lucide-react\";
+
+const menuItems = [
+  {
+    title: \"Dashboard\",
+    icon: LayoutDashboard,
+    href: \"/dashboard\",
+  },
+  {
+    title: \"CRM\",
+    icon: Briefcase,
+    href: \"/crm\",
+  },
+  {
+    title: \"Projects\",
+    icon: FolderKanban,
+    href: \"/projects\",
+  },
+  {
+    title: \"Analytics\",
+    icon: BarChart3,
+    href: \"/analytics\",
+  },
+];
+
+export default function Sidebar() {
+  return (
+    \u003cdiv className=\"w-64 h-screen bg-slate-900 border-r border-slate-800 p-5\"\u003e
+      \u003ch1 className=\"text-2xl font-bold mb-10\"\u003e
+        CRM SaaS
+      \
+
+
+================================================================================
+STEP 4
+================================================================================
+# STEP 4 — Backend Authentication System (Register/Login/JWT)
+
+Ab hum backend ka most important part build karenge:
+
+# Authentication System 🔐
+
+Iske bina:
+- login nahi hoga
+- protected pages nahi hongi
+- role-based access nahi chalega
+
+---
+
+# 📌 WHAT WE WILL BUILD
+
+✅ User Model  
+✅ Register API  
+✅ Login API  
+✅ Password Hashing  
+✅ JWT Authentication  
+✅ Auth Middleware  
+✅ Protected Routes  
+✅ Role-based Access
+
+---
+
+# 📌 CONCEPTS USED
+
+| Concept | Used |
+|---|---|
+| Authentication | Login/Register |
+| Authorization | Role access |
+| JWT | Secure token |
+| Middleware | Route protection |
+| Hashing | Password security |
+| REST API | Backend APIs |
+
+---
+
+# 📌 STEP 4.1 — CREATE USER MODEL
+
+Inside:
+
+```text id=\"l7zt4u\"
+server/src/models/User.js
+```
+
+---
+
+# User Model Code
+
+```js id=\"azlk1d\"
+const mongoose = require(\"mongoose\");
+
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+
+    password: {
+      type: String,
+      required: true,
+    },
+
+    role: {
+      type: String,
+      enum: [\"admin\", \"manager\", \"employee\"],
+      default: \"employee\",
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+module.exports = mongoose.model(\"User\", userSchema);
+```
+
+---
+
+# 📌 UNDERSTANDING THIS MODEL
+
+## name
+
+User ka name.
+
+---
+
+## email
+
+Unique login email.
+
+---
+
+## password
+
+Encrypted password store hoga.
+
+---
+
+## role
+
+Role-based access ke liye.
+
+---
+
+# 📌 STEP 4.2 — CREATE AUTH CONTROLLER
+
+Create:
+
+```text id=\"6mt0bg\"
+server/src/controllers/authController.js
+```
+
+---
+
+# 📌 REGISTER + LOGIN LOGIC
+
+```js id=\"jlwmk2\"
+const User = require(\"../models/User\");
+const bcrypt = require(\"bcryptjs\");
+const jwt = require(\"jsonwebtoken\");
+
+const registerUser = async (req, res) =\u003e {
+  try {
+    const { name, email, password, role } = req.body;
+
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+      return res.status(400).json({
+        message: \"User already exists\",
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = await User.create({
+      name,
+      email,
+      password: hashedPassword,
+      role,
+    });
+
+    res.status(201).json({
+      success: true,
+      user,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+const loginUser = async (req, res) =\u003e {
+  try {
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(400).json({
+        message: \"Invalid credentials\",
+      });
+    }
+
+    const isMatch = await bcrypt.compare(
+      password,
+      user.password
+    );
+
+    if (!isMatch) {
+      return res.status(400).json({
+        message: \"Invalid credentials\",
+      });
+    }
+
+    const token = jwt.sign(
+      {
+        id: user._id,
+        role: user.role,
+      },
+      process.env.JWT_SECRET,
+
+
+================================================================================
+STEP 5
+================================================================================
+# STEP 5 — Frontend Authentication Integration
+
+Ab hum frontend ko backend se connect karenge 🔥
+
+Abhi tak:
+- frontend UI ready hai
+- backend auth APIs ready hain
+
+Ab:
+- real login hoga
+- JWT store hoga
+- protected routes chalenge
+
+---
+
+# 📌 WHAT WE WILL BUILD
+
+✅ Axios setup  
+✅ Login API integration  
+✅ JWT storage  
+✅ Auth context  
+✅ Protected routes  
+✅ Logout system  
+✅ User persistence
+
+---
+
+# 📌 CONCEPTS USED
+
+| Concept | Used |
+|---|---|
+| API Integration | Frontend ↔ Backend |
+| Context API | Global auth state |
+| LocalStorage | JWT storage |
+| Protected Routes | Dashboard security |
+| Axios | API requests |
+
+---
+
+# 📌 STEP 5.1 — CREATE ENV FILE
+
+Inside `client`
+
+Create:
+
+```text id=\"e0m9m8\"
+.env.local
+```
+
+---
+
+# Add
+
+```env id=\"nmd7x7\"
+NEXT_PUBLIC_API_URL=http://localhost:5000/api
+```
+
+---
+
+# 📌 WHY?
+
+Taaki API URL reusable ho.
+
+---
+
+# 📌 STEP 5.2 — CREATE AXIOS INSTANCE
+
+Create:
+
+```text id=\"q9t8z8\"
+src/lib/axios.ts
+```
+
+---
+
+# Code
+
+```ts id=\"w9lsf2\"
+import axios from \"axios\";
+
+const api = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+});
+
+api.interceptors.request.use((config) =\u003e {
+  const token = localStorage.getItem(\"token\");
+
+  if (token) {
+    config.headers.Authorization = token;
+  }
+
+  return config;
+});
+
+export default api;
+```
+
+---
+
+# 📌 WHAT THIS DOES
+
+Every API request automatically:
+- token attach karega
+- secure routes access karega
+
+---
+
+# 📌 STEP 5.3 — CREATE AUTH CONTEXT
+
+Create:
+
+```text id=\"2l3dwb\"
+src/context/AuthContext.tsx
+```
+
+---
+
+# Code
+
+```tsx id=\"g7y7m5\"
+\"use client\";
+
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from \"react\";
+
+interface User {
+  id: string;
+  role: string;
+  email: string;
+}
+
+interface AuthContextType {
+  user: User | null;
+  token: string | null;
+  login: (data: any) =\u003e void;
+  logout: () =\u003e void;
+}
+
+const AuthContext = createContext\u003cAuthContextType\u003e(
+  {} as AuthContextType
+);
+
+export const AuthProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) =\u003e {
+  const [user, setUser] = useState\u003cUser | null\u003e(
+    null
+  );
+
+  const [token, setToken] = useState\u003cstring | null\u003e(
+    null
+  );
+
+  useEffect(() =\u003e {
+    const storedToken =
+      localStorage.getItem(\"token\");
+
+    const storedUser =
+      localStorage.getItem(\"user\");
+
+    if (storedToken \u0026\u0026 storedUser) {
+      setToken(storedToken);
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  const login = (data: any) =\u003e {
+    setToken(data.token);
+
+    setUser(data.user);
+
+    localStorage.setItem(\"token\", data.token);
+
+    localStorage.setItem(
+      \"user\",
+      JSON.stringify(data.user)
+    );
+  };
+
+  const logout = () =\u003e {
+    setToken(null);
+
+    setUser(null);
+
+    localStorage.removeItem(\"token\");
+
+    localStorage.removeItem(\"user\");
+  };
+
+  return (
+    \u003cAuthContext.Provider
+      value={{
+        user,
+        token,
+        login,
+        logout,
+      }}
+    \u003e
+      {children
+
+
+================================================================================
+STEP 6
+================================================================================
+# STEP 6 — CRM Module (Leads + Deals + Contacts)
+
+Ab hum actual CRM system build karenge 🔥
+
+Ye tumhare project ka:
+# Core Module
+
+hai.
+
+---
+
+# 📌 WHAT WE WILL BUILD
+
+✅ Lead Model  
+✅ Deal Model  
+✅ Contact Model  
+✅ Create Lead API  
+✅ Get Leads API  
+✅ Create Lead Form  
+✅ Leads Table  
+✅ Convert Lead → Deal  
+✅ Deal Stages
+
+---
+
+# 📌 CRM FLOW AGAIN
+
+```text id=\"mz6l1w\"
+Lead
+  ↓
+Contact
+  ↓
+Deal
+  ↓
+Project
+```
+
+---
+
+# 📌 CONCEPTS USED
+
+| Concept | Used |
+|---|---|
+| CRUD APIs | Leads |
+| Database Relationships | Lead → Deal |
+| REST APIs | CRM routes |
+| Form Handling | Lead creation |
+| Tables | CRM UI |
+| Business Workflow | Sales pipeline |
+
+---
+
+# 📌 STEP 6.1 — CREATE LEAD MODEL
+
+Create:
+
+```text id=\"6k4g0u\"
+server/src/models/Lead.js
+```
+
+---
+
+# Code
+
+```js id=\"pqy5i8\"
+const mongoose = require(\"mongoose\");
+
+const leadSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+
+    email: {
+      type: String,
+      required: true,
+    },
+
+    company: {
+      type: String,
+    },
+
+    status: {
+      type: String,
+      enum: [
+        \"new\",
+        \"contacted\",
+        \"qualified\",
+        \"converted\",
+      ],
+      default: \"new\",
+    },
+
+    assignedTo: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: \"User\",
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+module.exports = mongoose.model(
+  \"Lead\",
+  leadSchema
+);
+```
+
+---
+
+# 📌 UNDERSTANDING THIS
+
+## assignedTo
+
+Lead kis employee ko assign hua.
+
+---
+
+## status
+
+Lead stage track karega.
+
+---
+
+# 📌 STEP 6.2 — CREATE DEAL MODEL
+
+Create:
+
+```text id=\"1gwy8x\"
+server/src/models/Deal.js
+```
+
+---
+
+# Code
+
+```js id=\"1j9u2k\"
+const mongoose = require(\"mongoose\");
+
+const dealSchema = new mongoose.Schema(
+  {
+    lead: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: \"Lead\",
+    },
+
+    value: {
+      type: Number,
+      required: true,
+    },
+
+    stage: {
+      type: String,
+      enum: [
+        \"new\",
+        \"proposal\",
+        \"negotiation\",
+        \"won\",
+        \"lost\",
+      ],
+      default: \"new\",
+    },
+
+    assignedTo: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: \"User\",
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+module.exports = mongoose.model(
+  \"Deal\",
+  dealSchema
+);
+```
+
+---
+
+# 📌 STEP 6.3 — CREATE CONTACT MODEL
+
+Create:
+
+```text id=\"c1cbph\"
+server/src/models/Contact.js
+```
+
+---
+
+# Code
+
+```js id=\"jlwmq9\"
+const mongoose = require(\"mongoose\");
+
+const contactSchema = new mongoose.Schema(
+  {
+    name: String,
+
+    email: String,
+
+    company: String,
+
+    phone: String,
+  },
+  {
+    timestamps: true,
+  }
+);
+
+module.exports = mongoose.model(
+  \"Contact\",
+  contactSchema
+);
+```
+
+---
+
+# 📌 STEP 6.4 — CREATE LEAD CONTROLLER
+
+Create:
+
+```text id=\"mjlwm2\"
+server/src/controllers/leadController.js
+```
+
+---
+
+# Code
+
+```js id=\"u2k7bc\"
+const Lead = require(\"../models/Lead\");
+
+const createLead = async (req, res) =\u003e {
+  try {
+    const lead = await Lead.create({
+      ...req.
+
+
+================================================================================
+STEP 7
+================================================================================
+# STEP 7 — Deals Pipeline + Kanban CRM Board
+
+Ab hum CRM ka most powerful feature build karenge 🔥
+
+# Kanban Deal Pipeline
+
+Exactly like:
+- entity[\"software\",\"Bitrix24\",\"CRM and collaboration platform\"]
+- entity[\"software\",\"Trello\",\"Kanban productivity application\"]
+- entity[\"software\",\"HubSpot\",\"CRM platform\"]
+
+---
+
+# 📌 WHAT WE WILL BUILD
+
+✅ Convert Lead → Deal  
+✅ Create Deal API  
+✅ Fetch Deals  
+✅ Kanban CRM Board  
+✅ Deal Stages  
+✅ Drag \u0026 Drop Workflow  
+✅ Pipeline Visualization
+
+---
+
+# 📌 CONCEPTS USED
+
+| Concept | Used |
+|---|---|
+| Kanban System | Deal board |
+| Drag \u0026 Drop | Pipeline movement |
+| State Management | Deal updates |
+| CRUD APIs | Deals |
+| Workflow System | CRM stages |
+
+---
+
+# 📌 CRM PIPELINE FLOW
+
+```text id=\"1a8s3n\"
+Lead
+  ↓
+Deal Created
+  ↓
+Pipeline Stages
+  ↓
+Won / Lost
+```
+
+---
+
+# 📌 DEAL STAGES
+
+Hum use karenge:
+
+| Stage |
+|---|
+| new |
+| proposal |
+| negotiation |
+| won |
+| lost |
+
+---
+
+# 📌 STEP 7.1 — INSTALL DRAG \u0026 DROP LIBRARY
+
+Inside `client`
+
+Install:
+
+```bash id=\"i5j8q0\"
+npm install @hello-pangea/dnd
+```
+
+---
+
+# 📌 WHY?
+
+Professional drag-drop Kanban board ke liye.
+
+---
+
+# 📌 STEP 7.2 — CREATE DEAL CONTROLLER
+
+Create:
+
+```text id=\"3k4x7v\"
+server/src/controllers/dealController.js
+```
+
+---
+
+# Code
+
+```js id=\"7c2q1l\"
+const Deal = require(\"../models/Deal\");
+
+const createDeal = async (req, res) =\u003e {
+  try {
+    const deal = await Deal.create({
+      ...req.body,
+      assignedTo: req.user.id,
+    });
+
+    res.status(201).json({
+      success: true,
+      deal,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+const getDeals = async (req, res) =\u003e {
+  try {
+    const deals = await Deal.find()
+      .populate(\"lead\")
+      .populate(\"assignedTo\", \"name\");
+
+    res.status(200).json({
+      success: true,
+      deals,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+const updateDealStage = async (
+  req,
+  res
+) =\u003e {
+  try {
+    const { stage } = req.body;
+
+    const deal = await Deal.findByIdAndUpdate(
+      req.params.id,
+      { stage },
+      { new: true }
+    );
+
+    res.status(200).json({
+      success: true,
+      deal,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+module.exports = {
+  createDeal,
+  getDeals,
+  updateDealStage,
+};
+```
+
+---
+
+# 📌 WHAT THIS DOES
+
+## createDeal()
+
+New deal create karta hai.
+
+---
+
+## getDeals()
+
+All deals fetch karta hai.
+
+---
+
+## updateDealStage()
+
+Drag-drop ke baad stage update karega.
+
+---
+
+# 📌 STEP 7.3 — CREATE DEAL ROUTES
+
+Create:
+
+```text id=\"z1r0wn\"
+server/src/routes/dealRoutes.js
+```
+
+---
+
+# Code
+
+```js id=\"z0d2fk\"
+const express = require(\"express\");
+
+const router = express.Router();
+
+const protect = require(\"../middleware/authMiddleware\");
+
+const {
+  createDeal,
+  getDeals,
+  updateDealStage,
+} = require(\"../controllers/dealController\");
+
+router
+

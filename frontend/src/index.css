@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  background: #ffffff;
+  color: #0c0c0c;
+  font-family: 'Kanit', sans-serif;
+}
+
+body {
+  background: #ffffff;
+}
+
+.hero-heading {
+  background: linear-gradient(180deg, #646973 0%, #bbccd7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.codexa-marquee-track {
+  animation: codexa-marquee 26s linear infinite;
+  will-change: transform;
+}
+
+.codexa-marquee-reverse {
+  animation-direction: reverse;
+}
+
+.codexa-marquee-slow .codexa-marquee-track {
+  animation-duration: 120s;
+}
+
+@keyframes codexa-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.overflow-x-clip {
+  overflow-x: clip;
+}
+
+::selection {
+  background: rgba(182, 64, 255, 0.35);
+}

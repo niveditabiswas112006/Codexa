@@ -1,0 +1,473 @@
+# STEP 2 — Environment Setup + Create Frontend \u0026 Backend Projects
+
+Ab hum actual coding start karenge 🔥
+
+Is step mein:
+- Frontend setup
+- Backend setup
+- Tailwind setup
+- MongoDB setup
+- Folder structure
+- First successful run
+
+sab karenge.
+
+---
+
+# 📌 BEFORE STARTING
+
+Make sure installed hai:
+
+| Software | Required |
+|---|---|
+| Node.js | v18+ |
+| VS Code | Latest |
+| MongoDB Compass | Yes |
+| Git | Yes |
+
+---
+
+# 📌 CHECK NODE VERSION
+
+Terminal open karo:
+
+```bash
+node -v
+```
+
+Expected:
+
+```bash
+v18+
+```
+
+---
+
+# 📌 CREATE MAIN PROJECT FOLDER
+
+Desktop ya preferred location mein:
+
+```bash
+mkdir crm-saas
+cd crm-saas
+```
+
+---
+
+# 📌 CREATE FRONTEND PROJECT
+
+Hum use karenge:
+
+# entity[\"software\",\"Next.js\",\"React framework\"]
+
+Command:
+
+```bash
+npx create-next-app@latest client
+```
+
+---
+
+# 📌 SELECT THESE OPTIONS
+
+When prompts appear:
+
+| Option | Select |
+|---|---|
+| TypeScript | Yes |
+| ESLint | Yes |
+| Tailwind CSS | Yes |
+| src folder | Yes |
+| App Router | Yes |
+| Turbopack | Yes |
+| Import alias | Yes |
+
+---
+
+# 📌 MOVE INSIDE CLIENT
+
+```bash
+cd client
+```
+
+---
+
+# 📌 RUN FRONTEND
+
+```bash
+npm run dev
+```
+
+Open:
+
+```text
+http://localhost:3000
+```
+
+If working:
+
+✅ Frontend setup complete
+
+---
+
+# 📌 STOP SERVER
+
+Press:
+
+```bash
+CTRL + C
+```
+
+---
+
+# 📌 INSTALL SHADCN UI
+
+Hum professional dashboard UI banayenge using:
+
+# entity[\"software\",\"shadcn/ui\",\"React UI component library\"]
+
+Run:
+
+```bash
+npx shadcn@latest init
+```
+
+---
+
+# 📌 SELECT THESE OPTIONS
+
+| Option | Value |
+|---|---|
+| Style | Default |
+| Base Color | Slate |
+| CSS Variables | Yes |
+
+---
+
+# 📌 INSTALL IMPORTANT COMPONENTS
+
+```bash
+npx shadcn@latest add button card input dialog dropdown-menu table form
+```
+
+---
+
+# 📌 INSTALL EXTRA FRONTEND LIBRARIES
+
+```bash
+npm install axios react-hook-form zod lucide-react sonner
+```
+
+---
+
+# 📌 WHAT THESE ARE
+
+| Package | Use |
+|---|---|
+| axios | API calls |
+| react-hook-form | Forms |
+| zod | Validation |
+| lucide-react | Icons |
+| sonner | Toast notifications |
+
+---
+
+# 📌 GO BACK TO ROOT FOLDER
+
+```bash
+cd ..
+```
+
+---
+
+# 📌 CREATE BACKEND
+
+Create folder:
+
+```bash
+mkdir server
+cd server
+```
+
+---
+
+# 📌 INITIALIZE NODE PROJECT
+
+```bash
+npm init -y
+```
+
+---
+
+# 📌 INSTALL BACKEND DEPENDENCIES
+
+```bash
+npm install express mongoose cors dotenv bcryptjs jsonwebtoken cookie-parser socket.io
+```
+
+---
+
+# 📌 INSTALL DEV DEPENDENCIES
+
+```bash
+npm install -D nodemon
+```
+
+---
+
+# 📌 WHAT THESE PACKAGES DO
+
+| Package | Purpose |
+|---|---|
+| express | Backend server |
+| mongoose | MongoDB |
+| cors | Frontend/backend connection |
+| dotenv | Environment variables |
+| bcryptjs | Password hashing |
+| jsonwebtoken | JWT auth |
+| cookie-parser | Cookies |
+| socket.io | Real-time system |
+| nodemon | Auto restart |
+
+---
+
+# 📌 CREATE BACKEND FOLDERS
+
+Inside `server`
+
+Create:
+
+```text
+server/
+│
+├── src/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── services/
+│   ├── sockets/
+│   └── utils/
+```
+
+---
+
+# 📌 CREATE IMPORTANT FILES
+
+Create:
+
+```text
+server/
+│
+├── server.js
+│
+├── .env
+│
+└── src/app.js
+```
+
+---
+
+# 📌 CREATE BASIC EXPRESS SERVER
+
+# server.js
+
+```js
+const app = require(\"./src/app\");
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () =\u003e {
+  console.log(`Server running on port ${PORT}`);
+});
+```
+
+---
+
+# 📌 CREATE EXPRESS APP
+
+# src/app.js
+
+```js
+const express = require(\"express\");
+const cors = require(\"cors\");
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+app.get(\"/\", (req, res) =\u003e {
+  res.send(\"CRM API Running...\");
+});
+
+module.exports = app;
+```
+
+---
+
+# 📌 UPDATE package.json
+
+Inside scripts:
+
+```json
+\"scripts\": {
+  \"dev\": \"nodemon server.js\"
+}
+```
+
+---
+
+# 📌 RUN BACKEND
+
+```bash
+npm run dev
+```
+
+Expected:
+
+```bash
+Server running on port 5000
+```
+
+Open:
+
+```text
+http://localhost:5000
+```
+
+Expected:
+
+```text
+CRM API Running...
+```
+
+---
+
+# 📌 CREATE ENV FILE
+
+# .env
+
+```env
+PORT=5000
+
+MONGO_URI=your_mongodb_connection
+
+JWT_SECRET=mysecretkey
+```
+
+---
+
+# 📌 INSTALL MONGODB COMPASS
+
+Use:
+
+# entity[\"software\",\"MongoDB Compass\",\"MongoDB GUI application\"]
+
+Create local database:
+
+```text
+crm_saas
+```
+
+---
+
+# 📌 CREATE DATABASE CONFIG
+
+# src/config/db.js
+
+```js
+const mongoose = require(\"mongoose\");
+
+const connectDB = async () =\u003e {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+
+    console.log(\"MongoDB Connected\");
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+};
+
+module.exports = connectDB;
+```
+
+---
+
+# 📌 CONNECT DATABASE
+
+Update `server.js`
+
+```js
+require(\"dotenv\").config();
+
+const app = require(\"./src/app\");
+const connectDB = require(\"./src/config/db\");
+
+connectDB();
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () =\u003e {
+  console.log(`Server running on port ${PORT}`);
+});
+```
+
+---
+
+# 📌 CONCEPTS USED IN THIS STEP
+
+| Concept | Used |
+|---|---|
+| Frontend initialization | Next.js |
+| Backend setup | Express |
+| Database connection | MongoDB |
+| Authentication prep | JWT |
+| Real-time prep | Socket.io |
+| Component system | shadcn/ui |
+
+---
+
+# 📌 OUTPUT OF STEP 2
+
+After this step:
+
+✔ Frontend running  
+✔ Backend running  
+✔ MongoDB connected  
+✔ Tailwind setup done  
+✔ Base architecture ready  
+✔ Development environment complete
+
+---
+
+# 🚨 IMPORTANT
+
+Agar:
+- installation error aaye
+- npm issue aaye
+- MongoDB connect na ho
+- shadcn error aaye
+
+toh screenshot bhejna.
+
+Main debug karwaunga step-by-step.
+
+---
+
+# NEXT STEP
+
+👉 STEP 3 — Clean Folder Structure + Build Dashboard Layout + Authentication UI
+
+Usme hum:
+
+- Sidebar
+- Navbar
+- Dashboard layout
+- Theme setup
+- Login page UI
+- Protected routes
+
+banayenge professionally.
